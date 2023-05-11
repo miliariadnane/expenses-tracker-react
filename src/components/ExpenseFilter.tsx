@@ -1,5 +1,6 @@
 // @ts-ignore
 import React from 'react'
+import {categories} from "../App.tsx";
 
 interface Props {
     onSelectCategory: (category: string) => void;
@@ -11,12 +12,9 @@ export const ExpenseFilter = ({onSelectCategory}: Props) => {
             className="form-select"
             onChange={(e) => onSelectCategory(e.target.value)}
         >
-            <option value="all">All</option>
-            <option value="food">Food</option>
-            <option value="transportation">Transportation</option>
-            <option value="housing">Housing</option>
-            <option value="utilities">Utilities</option>
-            <option value="clothing">Clothing</option>
+            {categories.map((category) => (
+                <option key={category} value={category}>{category}</option>
+            ))}
         </select>
     )
 }
