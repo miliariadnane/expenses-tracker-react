@@ -3,14 +3,6 @@ import {ExpenseList} from "./components/ExpenseList.tsx";
 import {ExpenseFilter} from "./components/ExpenseFilter.tsx";
 import {ExpenseForm} from "./components/ExpenseForm.tsx";
 
-export const categories = [
-    'food',
-    'transportation',
-    'housing',
-    'utilities',
-    'clothing'
-]
-
 function App() {
     const [selectedCategory, setSelectedCategory] = useState('')
     const [expenses, setExpenses] = useState([

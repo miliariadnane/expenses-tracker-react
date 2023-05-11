@@ -1,6 +1,6 @@
 // @ts-ignore
 import React from 'react'
-import {categories} from "../App.tsx";
+import categories from "./categories";
 
 interface Props {
     onSelectCategory: (category: string) => void;
