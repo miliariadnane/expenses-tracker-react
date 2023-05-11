@@ -21,7 +21,17 @@ function App() {
         <div className="container">
             <h1 className="text-center mt-3">Expense Tracker</h1>
             <div className="mb-3">
-                <ExpenseForm/>
+                <ExpenseForm onSubmit={(expense) => {
+                    setExpenses(
+                        [...expenses, {
+                            id: expenses.length + 1,
+                            description: expense.description,
+                            amount: expense.amount,
+                            category: expense.category
+                        }]
+                    )
+                }
+                }/>
             </div>
             <div className="mb-3 mt-2">
                 <ExpenseFilter
