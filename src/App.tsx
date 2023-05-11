@@ -1,23 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import {ExpenseList} from "./components/expenseList.tsx";
+import {useState} from 'react';
+import {ExpenseList} from "./components/ExpenseList.tsx";
+import {ExpenseFilter} from "./components/ExpenseFilter.tsx";
 
 function App() {
+    const [selectedCategory, setSelectedCategory] = useState('')
     const [expenses, setExpenses] = useState([
-        { id: 1, description: 'Rent', amount: 1000, category: 'Housing' },
-        { id: 2, description: 'Groceries', amount: 200, category: 'Food' },
-        { id: 3, description: 'Gas', amount: 50, category: 'Transportation' },
-        { id: 4, description: 'Dinner', amount: 100, category: 'Food' },
-        { id: 5, description: 'Car Payment', amount: 300, category: 'Transportation' }
+        {id: 1, description: 'Rent', amount: 1000, category: 'housing'},
+        {id: 2, description: 'Groceries', amount: 200, category: 'food'},
+        {id: 3, description: 'Gas', amount: 50, category: 'transportation'},
+        {id: 4, description: 'Dinner', amount: 100, category: 'food'},
+        {id: 5, description: 'Car Payment', amount: 300, category: 'transportation'}
     ]);
 
+    const visibleExpenses = selectedCategory
+        ? expenses.filter(expense => expense.category === selectedCategory)
+        : expenses
+
     return (
-        <ExpenseList
-            expenses={expenses}
-            onDelete={(id) => setExpenses(expenses.filter(expense => expense.id !== id))}
-        />
+        <div className="container">
+            <div className="mb-3 mt-2">
+                <ExpenseFilter
+                    onSelectCategory={(category) => setSelectedCategory(category)}
+                />
+            </div>
+            <ExpenseList
+                expenses={visibleExpenses}
+                onDelete={(id) => setExpenses(
+                    expenses.filter(expense => expense.id !== id))}
+            />
+        </div>
     )
 }
 
